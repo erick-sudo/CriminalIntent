@@ -7,4 +7,5 @@
     <string name="crime_solved_label">Solved</string>
     <string name="crime_title_placeholder">Crime Title</string>
     <string name="crime_date_placeholder">Crime Date</string>
+    <string name="solved_icon_description">Police Case</string>
 </resources>

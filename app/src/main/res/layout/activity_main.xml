@@ -6,6 +6,7 @@
     android:name="com.kcire.criminalintent.CrimeListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#904D4618">
 
 </androidx.fragment.app.FragmentContainerView>
