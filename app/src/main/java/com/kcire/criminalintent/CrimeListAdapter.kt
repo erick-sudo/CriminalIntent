@@ -8,9 +8,11 @@ import androidx.core.view.setPadding
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kcire.criminalintent.databinding.ListItemCrimeBinding
+import java.util.*
 
 class CrimeListAdapter(
-    private val crimes: List<Crime>
+    private val crimes: List<Crime>,
+    private val onCrimeClicked: (crimeId: UUID) -> Unit
 ) : RecyclerView.Adapter<CrimeHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -26,7 +28,7 @@ class CrimeListAdapter(
         position: Int
     ) {
         val crime = crimes[position]
-        holder.bind(crime)
+        holder.bind(crime, onCrimeClicked)
     }
 
     override fun getItemCount() = crimes.size
@@ -35,19 +37,12 @@ class CrimeListAdapter(
 class CrimeHolder(
     private val binding: ListItemCrimeBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun bind(crime: Crime) {
+    fun bind(crime: Crime, onCrimeClicked: (crimeId: UUID) -> Unit) {
         binding.crimeTitle.text = crime.title
         binding.crimeDate.text = crime.date.toString()
 
         binding.root.setOnClickListener {
-            Snackbar.make(
-                binding.root,
-                "${crime.id}\n${crime.title}\n${crime.date}",
-                Snackbar.LENGTH_SHORT
-            ).apply {
-                it.setBackgroundColor(Color.BLUE)
-                it.setPadding(30)
-            }.show()
+            onCrimeClicked(crime.id)
         }
 
         binding.crimeSolved.visibility = if (crime.isSolved) {
