@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/crimeListFragment">
+
+    <fragment
+        android:id="@+id/crimeListFragment"
+        android:name="com.crime.criminalintent.CrimeListFragment"
+        android:label="CrimeListFragment"
+        tools:layout="@layout/fragment_crime_list">
+        <action
+            android:id="@+id/show_crime_detail"
+            app:destination="@id/crimeDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crimeDetailFragment"
+        android:name="com.crime.criminalintent.CrimeDetailFragment"
+        android:label="CrimeDetailFragment"
+        tools:layout="@layout/fragment_crime_detail">
+        <argument
+            android:name="crimeId"
+            app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/select_date"
+            app:destination="@id/datePickerFragment" />
+        <action
+            android:id="@+id/select_time"
+            app:destination="@id/timePickerFragment" />
+        <action
+            android:id="@+id/back_to_crime_list"
+            app:destination="@id/crimeListFragment" />
+        <action
+            android:id="@+id/show_thumbnail"
+            app:destination="@id/crimeThumbnailFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/datePickerFragment"
+        android:name="com.crime.criminalintent.DatePickerFragment"
+        android:label="DatePickerFragment" >
+        <argument
+            android:name="year"
+            app:argType="integer" />
+        <argument
+            android:name="month"
+            app:argType="integer" />
+        <argument
+            android:name="day"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/timePickerFragment"
+        android:name="com.crime.criminalintent.TimePickerFragment"
+        android:label="TimePickerFragment">
+        <argument
+            android:name="hourOfDay"
+            app:argType="integer" />
+        <argument
+            android:name="minutes"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/crimeThumbnailFragment"
+        android:name="com.crime.criminalintent.CrimeThumbnailFragment"
+        android:label="CrimeThumbnailFragment" >
+        <argument
+            android:name="photoFileName"
+            app:argType="string" />
+    </dialog>
+</navigation>
